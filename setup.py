@@ -6,6 +6,8 @@ setup(
     include_package_data=False,
     install_requires=[
         'Django',
+        'requests',
+        'requests_oauthlib'
     ],
     setup_requires=[
         'pytest-runner',
