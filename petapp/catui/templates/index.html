@@ -42,5 +42,13 @@
     </div>
 </div>
 
+<script>
+    navigator.geolocation.getCurrentPosition(function(position){
+        console.log("position: ", position)
+    }, function(error){
+        console.log("error: ", error)
+    });
+</script>
+
 </body>
 </html>
