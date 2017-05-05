@@ -7,4 +7,5 @@ urlpatterns = [
     url(r'^cats/', include('catservice.urls')),
     url(r'^catui/', include('catui.urls')),
     url(r'^twitter/', include('twitterservice.urls')),
+    url(r'^d3/', include('d3.urls')),
 ]

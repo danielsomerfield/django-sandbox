@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>D3 Example</title>
+    <script src="https://d3js.org/d3.v4.js"></script>
+    <script src="https://d3js.org/d3-hierarchy.v1.min.js"></script>
+
+<style>
+
+    circle {
+      fill: rgb(31, 119, 180);
+      fill-opacity: .25;
+      stroke: rgb(31, 119, 180);
+      stroke-width: 1px;
+    }
+</style>
+
+</head>
+<body>
+    <svg id="canvas" width="500" height="500">
+
+    </svg>
+
+    <script>
+        var svg = d3.select('svg');
+
+        var pack = d3.pack()
+            .size([svg.attr("width"), svg.attr("height")])
+            .padding(1.5)
+         ;
+
+
+
+        var circles = [{name: "one", value: 10}, {name: "two", value: 20}, {name: "three", value: 30}];
+        var root = d3
+            .hierarchy({children: circles})
+            .sum(function(c){return c.value});
+        ;
+        d3.pack(root)
+
+        var node = svg.selectAll(".node")
+            .data(pack(root).leaves())
+            .enter()
+            .append("g")
+            .attr("class", "node")
+            .attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; });
+
+        node.append("circle")
+            .attr("r", function(d){return d.r;}) ;
+
+        node
+            .append("text")
+            .text(function(d){return d.data.name + ": " + d.value;});
+
+
+    </script>
+</body>
+</html>
